@@ -6,10 +6,7 @@ import com.library.utility.DB_Util;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 public class US1 extends TestBase {
@@ -36,10 +33,30 @@ public class US1 extends TestBase {
 
     @Test
     public void us1test2() {
+
         // When Execute query to get all columns
-
+        String query = "SELECT * FROM users";
+        DB_Util.runQuery(query);
+        //from DB
+        List<String> actualColumns = DB_Util.getAllColumnNamesAsList();
+        System.out.println("actualColumns from DB = " + actualColumns);
+        //expected from user
+        List<String> expectedColumns=new ArrayList<>(Arrays.asList(
+                "id",
+                "full_name",
+                "email",
+                "password",
+                "user_group_id",
+                "image",
+                "extra_data",
+                "status",
+                "is_admin",
+                "start_date",
+                "end_date",
+                "address"));
+        System.out.println("expectedColumns from user = " + expectedColumns);
         //    Then verify the below columns are listed in result
-
+        Assert.assertEquals(actualColumns, expectedColumns);
     }
 
 }
