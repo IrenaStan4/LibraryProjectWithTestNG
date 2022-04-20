@@ -29,6 +29,10 @@ ORDER BY countofbookcategories DESC;
 
 -- us 04 query to find most popular user
 
+SELECT * FROM users;
+
+SELECT  * FROM book_borrow;
+
 SELECT full_name, COUNT(*) AS countofreadbooks
 FROM users u
          INNER JOIN book_borrow bb ON u.id = bb.user_id
